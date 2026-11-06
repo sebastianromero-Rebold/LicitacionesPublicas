@@ -19,6 +19,18 @@
 const VERSION = '1.0.0';
 const P = PropertiesService.getScriptProperties();
 
+/**
+ * Ejecutar UNA vez desde el editor (botón ▶ Ejecutar) antes de implementar:
+ * pide los permisos de Sheets y Drive y crea la hoja y la carpeta "Licitaciones Rebold".
+ */
+function inicializar() {
+  if (!P.getProperty('TEAM_CODE')) throw new Error('Falta la propiedad TEAM_CODE (Configuración del proyecto → Propiedades del script)');
+  const ss = libro_();
+  carpeta_('biblioteca', 'Biblioteca');
+  Logger.log('Hoja: ' + ss.getUrl());
+  Logger.log('Carpeta: ' + raiz_().getUrl());
+}
+
 function doGet() {
   return json_({ok: true, servicio: 'licitaciones-rebold', version: VERSION});
 }
