@@ -4,7 +4,8 @@
  */
 'use strict';
 
-const BACKEND_URL_DEFAULT = '';           // pegar aquí la URL /exec del Apps Script al desplegarlo
+// Apps Script desplegado con la cuenta de Rebold (2026-11-06). El equipo solo escribe el código en Configuración.
+const BACKEND_URL_DEFAULT = 'https://script.google.com/macros/s/AKfycbyNd7b0Z9QgjSQ0DBgMus-eUCDW922BXyaHjPppfkH9ubq5ZwutDFGfs05a41hBoRHduQ/exec';
 const SECCION_MOMENTO = {juridico: .5, financiero: .4, tecnico: .5, ponderable: .75, economico: .85};
 const ESTADOS = {
   nueva:                {t: 'Sin decidir',            c: '#6B6B73'},
@@ -681,9 +682,10 @@ function vistaConfig() {
   $('#c-b').onclick = async () => {
     ls.set('lp_backend', $('#c-u').value.trim()); ls.set('lp_codigo', $('#c-c').value);
     $('#c-r').textContent = 'Probando…';
-    try { if (Store.remoto()) { const j = await Store.call('ping'); $('#c-r').textContent = '✓ Conectado · backend ' + (j.version || ''); await Store.cargar(); }
-      else $('#c-r').textContent = 'Modo demo'; pintarCabecera(); }
-    catch (e) { $('#c-r').textContent = '✗ ' + e.message; }
+    try { if (Store.remoto()) { const j = await Store.call('ping'); $('#c-r').textContent = '✓ Conectado · backend ' + (j.version || ''); await Store.cargar(); S.conectado = true; }
+      else $('#c-r').textContent = 'Modo demo'; }
+    catch (e) { S.conectado = false; $('#c-r').textContent = '✗ ' + e.message; }
+    pintarCabecera();
   };
   $('#c-ar').onclick = async () => {
     const nuevas = ars.map(a => ({...a}));
@@ -694,7 +696,9 @@ function vistaConfig() {
 
 /* ------------------------------ arranque y rutas ------------------------------ */
 function pintarCabecera() {
-  const m = $('#modo'); m.textContent = Store.remoto() ? 'Conectado' : 'Modo demo'; m.className = 'modo' + (Store.remoto() ? ' real' : '');
+  const m = $('#modo');
+  m.textContent = !Store.remoto() ? 'Modo demo' : S.conectado ? 'Conectado' : 'Sin conexión: revisa el código';
+  m.className = 'modo' + (S.conectado ? ' real' : '');
   $('#yo').textContent = yo().nombre || 'Sin identificar';
   const pend = Object.values(S.lic).filter(l => estadoLic(l) === 'pendiente_aprobacion').length;
   $('#nav').querySelectorAll('a').forEach(a => {
@@ -717,7 +721,12 @@ async function iniciar() {
     Object.assign(S, {radar: radar.procesos, resumen, param, req});
     S.f = {...S.f, ...ls.get('lp_filtros', {})};
     $('#generado').textContent = 'SECOP actualizado ' + new Date(radar.generado).toLocaleString('es-CO', {dateStyle: 'medium', timeStyle: 'short'});
-    try { await Store.cargar(); } catch (e) { toast('Backend no disponible (' + e.message + '); se muestra solo el radar', 6000); }
+    if (Store.remoto() && !ls.get('lp_codigo', '')) {
+      toast('Escribe el código del equipo en Configuración para guardar decisiones y documentos', 6000);
+    } else {
+      try { await Store.cargar(); S.conectado = Store.remoto(); }
+      catch (e) { toast('Backend: ' + e.message + '. Revisa el código en Configuración', 6000); }
+    }
     window.addEventListener('hashchange', render);
     render();
   } catch (e) {
