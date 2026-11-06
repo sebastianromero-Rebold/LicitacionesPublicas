@@ -1,0 +1,74 @@
+{
+  "_nota": "Parámetros del índice de oportunidad. Los lee el motor (Python) y la app (JS). Los valores marcados POR CONFIRMAR deben ajustarse con datos reales de Rebold (RUP, estados financieros).",
+
+  "pesos": {
+    "cobertura": 30,
+    "tiempo": 15,
+    "documentacion": 20,
+    "presupuesto": 15,
+    "posibilidad": 20
+  },
+
+  "presupuesto": {
+    "_nota": "Rangos en pesos colombianos. POR CONFIRMAR: capacidad residual de contratación (K) y capital de trabajo del RUP.",
+    "minimo_rentable": 10000000,
+    "optimo_desde": 30000000,
+    "optimo_hasta": 1500000000,
+    "capacidad_maxima": 3000000000
+  },
+
+  "dias_preparacion": {
+    "_nota": "Días hábiles que Rebold necesita para armar una oferta completa por modalidad.",
+    "minima": 3,
+    "rfi": 2,
+    "regimen": 5,
+    "selabreviada": 8,
+    "concurso": 10,
+    "licitacion": 12,
+    "otra": 6
+  },
+
+  "competidores_defecto": {
+    "_nota": "Oferentes esperados cuando no hay histórico de la entidad. Se reemplaza por la mediana real en cuanto el histórico la tiene.",
+    "minima": 6,
+    "rfi": 4,
+    "regimen": 3,
+    "selabreviada": 5,
+    "concurso": 4,
+    "licitacion": 4,
+    "otra": 4
+  },
+
+  "ajuste_modalidad": {
+    "_nota": "Multiplicador sobre 1/oferentes. Concurso de méritos se gana por calidad (casos y equipo); mínima cuantía por menor precio.",
+    "minima": 0.8,
+    "rfi": 1.0,
+    "regimen": 1.1,
+    "selabreviada": 1.0,
+    "concurso": 1.3,
+    "licitacion": 1.0,
+    "otra": 1.0
+  },
+
+  "complejidad": {
+    "_nota": "Alta si la modalidad es licitación o concurso, o el monto supera 'alta_desde'. Baja si es mínima cuantía/RFI y no supera 'baja_hasta'.",
+    "baja_hasta": 100000000,
+    "alta_desde": 1000000000
+  },
+
+  "areas": [
+    {"id": "activation_hub",  "nombre": "Activation Hub (Medios)",  "director": "", "email": ""},
+    {"id": "insight_factory", "nombre": "Insight Factory",          "director": "", "email": ""},
+    {"id": "creative_lab",    "nombre": "Creative Lab",             "director": "", "email": ""},
+    {"id": "growth_engine",   "nombre": "Growth Engine",            "director": "", "email": ""},
+    {"id": "agent_lab",       "nombre": "Agent Lab",                "director": "", "email": ""},
+    {"id": "financiero",      "nombre": "Financiero",               "director": "", "email": ""},
+    {"id": "gerencia",        "nombre": "Gerencia General",         "director": "", "email": ""}
+  ],
+
+  "aprobacion": {
+    "_nota": "Áreas que deben aprobar la decisión de participar: las líneas Rebold del proceso + estas siempre.",
+    "siempre": ["financiero"],
+    "gerencia_desde_monto": 1000000000
+  }
+}

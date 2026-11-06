@@ -1,0 +1,41 @@
+{
+  "_nota": "Catálogo de documentos. 'reutilizable' = vive en la Biblioteca y sirve para futuras licitaciones; 'vigencia_dias' = días desde la expedición en que SECOP/pliegos suelen aceptarlo (cada pliego manda). 'modalidades' vacías = aplica a todas. Base: Ley 80/1993, Ley 1150/2007, Decreto 1082/2015.",
+
+  "secciones": [
+    {"id": "juridico",   "nombre": "Habilitantes jurídicos"},
+    {"id": "financiero", "nombre": "Habilitantes financieros y organizacionales"},
+    {"id": "tecnico",    "nombre": "Habilitantes técnicos (experiencia y equipo)"},
+    {"id": "ponderable", "nombre": "Propuesta técnica y factores ponderables"},
+    {"id": "economico",  "nombre": "Oferta económica"}
+  ],
+
+  "documentos": [
+    {"id": "rup", "nombre": "Certificado RUP (Registro Único de Proponentes) en firme, con códigos UNSPSC del proceso", "seccion": "juridico", "habilitante": true, "reutilizable": true, "vigencia_dias": 30, "peso": 5, "resp": "financiero", "modalidades": ["licitacion", "selabreviada", "concurso"]},
+    {"id": "camara", "nombre": "Certificado de existencia y representación legal", "seccion": "juridico", "habilitante": true, "reutilizable": true, "vigencia_dias": 30, "peso": 2, "resp": "gerencia", "modalidades": []},
+    {"id": "rut", "nombre": "RUT actualizado", "seccion": "juridico", "habilitante": true, "reutilizable": true, "vigencia_dias": null, "peso": 1, "resp": "financiero", "modalidades": []},
+    {"id": "cedula_rl", "nombre": "Cédula del representante legal", "seccion": "juridico", "habilitante": true, "reutilizable": true, "vigencia_dias": null, "peso": 1, "resp": "gerencia", "modalidades": []},
+    {"id": "procuraduria", "nombre": "Antecedentes disciplinarios (Procuraduría) — empresa y representante legal", "seccion": "juridico", "habilitante": true, "reutilizable": true, "vigencia_dias": 30, "peso": 1, "resp": "gerencia", "modalidades": []},
+    {"id": "contraloria", "nombre": "Antecedentes fiscales (Contraloría) — empresa y representante legal", "seccion": "juridico", "habilitante": true, "reutilizable": true, "vigencia_dias": 30, "peso": 1, "resp": "gerencia", "modalidades": []},
+    {"id": "policia", "nombre": "Antecedentes judiciales (Policía) y RNMC del representante legal", "seccion": "juridico", "habilitante": true, "reutilizable": true, "vigencia_dias": 30, "peso": 1, "resp": "gerencia", "modalidades": []},
+    {"id": "parafiscales", "nombre": "Certificación de pago de seguridad social y parafiscales (art. 50 Ley 789/2002), firmada por revisor fiscal", "seccion": "juridico", "habilitante": true, "reutilizable": true, "vigencia_dias": 30, "peso": 2, "resp": "financiero", "modalidades": []},
+    {"id": "revisor_fiscal", "nombre": "Tarjeta profesional y certificado de antecedentes (JCC) del revisor fiscal", "seccion": "juridico", "habilitante": true, "reutilizable": true, "vigencia_dias": 90, "peso": 1, "resp": "financiero", "modalidades": []},
+    {"id": "carta_presentacion", "nombre": "Carta de presentación de la oferta firmada (formato del pliego)", "seccion": "juridico", "habilitante": true, "reutilizable": false, "vigencia_dias": null, "peso": 2, "resp": "gerencia", "modalidades": []},
+    {"id": "garantia_seriedad", "nombre": "Garantía de seriedad de la oferta (póliza)", "seccion": "juridico", "habilitante": true, "reutilizable": false, "vigencia_dias": null, "peso": 3, "resp": "financiero", "modalidades": ["licitacion", "selabreviada", "concurso"]},
+    {"id": "compromiso_anticorrupcion", "nombre": "Compromiso anticorrupción y demás formatos del pliego", "seccion": "juridico", "habilitante": true, "reutilizable": false, "vigencia_dias": null, "peso": 1, "resp": "gerencia", "modalidades": []},
+
+    {"id": "estados_financieros", "nombre": "Estados financieros del último año con notas, dictamen y certificación", "seccion": "financiero", "habilitante": true, "reutilizable": true, "vigencia_dias": 365, "peso": 3, "resp": "financiero", "modalidades": []},
+    {"id": "indicadores", "nombre": "Verificación de indicadores financieros y organizacionales frente al pliego", "seccion": "financiero", "habilitante": true, "reutilizable": false, "vigencia_dias": null, "peso": 3, "resp": "financiero", "modalidades": ["licitacion", "selabreviada", "concurso"]},
+
+    {"id": "experiencia", "nombre": "Certificaciones de experiencia (contratos con códigos UNSPSC y valor exigidos)", "seccion": "tecnico", "habilitante": true, "reutilizable": true, "vigencia_dias": null, "peso": 5, "resp": "linea", "modalidades": []},
+    {"id": "equipo", "nombre": "Equipo mínimo: hojas de vida, títulos, tarjetas profesionales y cartas de compromiso", "seccion": "tecnico", "habilitante": true, "reutilizable": true, "vigencia_dias": null, "peso": 3, "resp": "linea", "modalidades": ["licitacion", "selabreviada", "concurso", "regimen"]},
+    {"id": "portafolio", "nombre": "Portafolio Rebold y casos de éxito de la línea (cifras oficiales de la Growth Suite)", "seccion": "tecnico", "habilitante": false, "reutilizable": true, "vigencia_dias": 180, "peso": 1, "resp": "linea", "modalidades": []},
+
+    {"id": "propuesta_tecnica", "nombre": "Propuesta técnica / metodología", "seccion": "ponderable", "habilitante": false, "reutilizable": false, "vigencia_dias": null, "peso": 5, "resp": "linea", "modalidades": ["licitacion", "selabreviada", "concurso", "regimen"]},
+    {"id": "factor_calidad", "nombre": "Factor de calidad / valores agregados", "seccion": "ponderable", "habilitante": false, "reutilizable": false, "vigencia_dias": null, "peso": 2, "resp": "linea", "modalidades": ["licitacion", "selabreviada", "concurso"]},
+    {"id": "industria_nacional", "nombre": "Apoyo a la industria nacional (Ley 816/2003)", "seccion": "ponderable", "habilitante": false, "reutilizable": true, "vigencia_dias": null, "peso": 1, "resp": "gerencia", "modalidades": ["licitacion", "selabreviada", "concurso"]},
+    {"id": "mipyme", "nombre": "Certificado MiPyme / incentivos (discapacidad, emprendimiento de mujeres) si aplican", "seccion": "ponderable", "habilitante": false, "reutilizable": true, "vigencia_dias": 365, "peso": 1, "resp": "financiero", "modalidades": ["licitacion", "selabreviada", "concurso", "minima"]},
+
+    {"id": "costeo", "nombre": "Costeo interno aprobado (horas, terceros, pauta, margen)", "seccion": "economico", "habilitante": false, "reutilizable": false, "vigencia_dias": null, "peso": 4, "resp": "financiero", "modalidades": []},
+    {"id": "oferta_economica", "nombre": "Oferta económica en el formato del pliego (sin superar el presupuesto oficial)", "seccion": "economico", "habilitante": true, "reutilizable": false, "vigencia_dias": null, "peso": 4, "resp": "financiero", "modalidades": []}
+  ]
+}

@@ -1,0 +1,40 @@
+name: Actualizar licitaciones SECOP
+
+on:
+  schedule:
+    - cron: "0 11 * * *"     # 6:00 a. m. Bogotá, todos los días
+  workflow_dispatch:
+    inputs:
+      dias:
+        description: "Días de publicación a releer (365 = reconstruir histórico)"
+        default: "120"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: datos-secop
+  cancel-in-progress: false
+
+jobs:
+  actualizar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Descargar y clasificar SECOP II
+        env:
+          SECOP_APP_TOKEN: ${{ secrets.SECOP_APP_TOKEN }}
+          TZ: America/Bogota
+        run: python -m motor.construir --dias "${{ github.event.inputs.dias || '120' }}"
+      - name: Guardar datos
+        run: |
+          git config user.name "rebold-licitaciones-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data
+          if git diff --cached --quiet; then echo "Sin cambios"; exit 0; fi
+          git commit -m "datos: SECOP $(date +%F)"
+          git push
