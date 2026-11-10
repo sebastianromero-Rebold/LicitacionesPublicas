@@ -1,0 +1,12 @@
+{
+  "name": "Licitaciones Rebold",
+  "short_name": "Licitaciones",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#08080A",
+  "theme_color": "#08080A",
+  "icons": [
+    {"src": "assets/favicon-192.png", "sizes": "192x192", "type": "image/png"},
+    {"src": "assets/favicon-512.png", "sizes": "512x512", "type": "image/png"}
+  ]
+}
